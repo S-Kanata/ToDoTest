@@ -1,0 +1,47 @@
+﻿<Window x:Class="ToDoTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <DataGrid x:Name="ToDoDataView"
+                ItemsSource="{Binding DataGridCollection}">
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel Margin="10">
+                <Button x:Name="AddButton"
+                    Margin="2"
+                    FontSize="20"
+                    Content="Add"
+                    Click="AddButton_Click"/>
+                <Button x:Name="UpdateButton"
+                    Margin="2"
+                    FontSize="20"
+                    Content="Edit"
+                    Click="EditButton_Click"/>
+                <Button x:Name="DeleteButton"
+                     Margin="2"
+                    FontSize="20"
+                    Content="Delete"
+                    Click="DeleteButton_Click"/>
+                <Button x:Name="ClearButton"
+                        Margin="2"
+                        FontSize="20"
+                        Content="Clear"
+                        Click="ClearButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
