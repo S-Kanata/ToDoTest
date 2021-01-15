@@ -84,6 +84,7 @@ namespace ToDoTest
             }
         }
 
+
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("A function is not set yet.");

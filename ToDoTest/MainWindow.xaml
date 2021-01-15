@@ -15,8 +15,15 @@
         <Grid Grid.Row="0">
 
             <DataGrid x:Name="ToDoDataView"
-                ItemsSource="{Binding DataGridCollection}">
+                ItemsSource="{Binding DataGridCollection}"
+                AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding ="{Binding Name}"  Width="90"/>
+                    <DataGridTextColumn Header="Date" Binding ="{Binding Date}"  Width="120"/>
+                    <DataGridTextColumn Header="Note" Width="*"/>
+                </DataGrid.Columns>
             </DataGrid>
+            
         </Grid>
 
         <Grid Grid.Row="1">
