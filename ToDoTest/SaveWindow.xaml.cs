@@ -30,11 +30,15 @@ namespace ToDoTest
             if (ToDo != null)
             {
                 this.NameTextBox.Text = ToDo.Name;
+
+                DateTime dateTime = DateTime.Parse(ToDo.Date);
+                this.DateSelecter.SelectedDate = dateTime;
             }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+
             if (NameTextBox.Text.Trim().Length < 1)
             {
                 MessageBox.Show("Please submit the name");
@@ -48,17 +52,18 @@ namespace ToDoTest
             }
 
             string _datetime = DateSelecter.SelectedDate.ToString();
+            string _nowtime = DateTime.Now.ToString();
 
             using (var connection = new SQLiteConnection(App.DatabasePath))
             {
                 connection.CreateTable<ToDo>();
                 if (_ToDo == null)
                 {
-                    connection.Insert(new ToDo(NameTextBox.Text, _datetime));
+                    connection.Insert(new ToDo(NameTextBox.Text, _datetime, _nowtime, _nowtime));
                 }
                 else
                 {
-                    connection.Update(new ToDo(_ToDo.ID, NameTextBox.Text, _datetime));
+                    connection.Update(new ToDo(_ToDo.ID, NameTextBox.Text, _datetime, _ToDo.CreatedTime, _nowtime));
                 }
 
                 Close();

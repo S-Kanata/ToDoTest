@@ -18,9 +18,10 @@
                 ItemsSource="{Binding DataGridCollection}"
                 AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding ="{Binding Name}"  Width="90"/>
                     <DataGridTextColumn Header="Date" Binding ="{Binding Date}"  Width="120"/>
-                    <DataGridTextColumn Header="Note" Width="*"/>
+                    <DataGridTextColumn Header="Name" Binding ="{Binding Name}"  Width="*"/>
+                    <DataGridTextColumn Header="Created" Binding ="{Binding CreatedTime}"  Width="*"/>
+                    <DataGridTextColumn Header="Updated" Binding ="{Binding UpdatedTime}"  Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             
