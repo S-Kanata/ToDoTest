@@ -5,17 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoTest"
         mc:Ignorable="d"
-        Title="SaveWindow" Height="500" Width="500">
+        Title="SaveWindow" Height="200" Width="500">
     <Grid>
-        <StackPanel Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Background="AliceBlue" Margin="2"/>
+        <Grid Grid.Row="1" Background="LightYellow" Margin="2"/>
+        <Grid Grid.Row="2" Background="#FFDBC9" Margin="2"/>
+        <TextBlock 
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="ToDo"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"/>
             <TextBox x:Name="NameTextBox"
-                     FontSize="20"/>
-            <DatePicker x:Name="DateSelecter"
-                        Margin="5"/>
-            <Button Content="Save"
-                    x:Name="SaveButton"
-                    Click="SaveButton_Click"
-                    FontSize="20"/>
-        </StackPanel>
+                 Grid.Row="0"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="3"
+                 FontSize="20"
+                 Margin="5"/>
+            <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Date"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"/>
+        <DatePicker Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    x:Name="DateSelecter"
+                    Margin="5"/>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Priority"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="20"/>
+        <ComboBox Grid.Row="2"
+                  Grid.Column="1"     
+                  x:Name="PriorityBox"
+                  Grid.ColumnSpan="1"
+                  Margin="5"  
+                  FontSize="15"/>
+        <Button x:Name="SaveButton" 
+                Grid.Row="3"
+                Grid.ColumnSpan="4"
+                Template="{StaticResource ButtonTemplate}"
+                Content="Save"
+                Click="SaveButton_Click"    
+                FontSize="20"/>
     </Grid>
 </Window>

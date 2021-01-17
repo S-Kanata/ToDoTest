@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:ToDoTest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ControlTemplate x:Key="ButtonTemplate"
+                         TargetType="Button">
+            <Border Name="border"
+                BorderThickness="1"
+                BorderBrush="DarkGray"
+                CornerRadius="5">
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

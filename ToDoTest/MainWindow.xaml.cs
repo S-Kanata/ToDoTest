@@ -75,6 +75,9 @@ namespace ToDoTest
         }
 
 
+        /// <summary>
+        /// データベース更新
+        /// </summary>
         private void ReadDatabase()
         {
             using (var connection = new SQLiteConnection(App.DatabasePath))
@@ -84,10 +87,24 @@ namespace ToDoTest
             }
         }
 
-
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("A function is not set yet.");
+            MessageBox.Show("The function has not been implemented yet.");
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete all ToDo?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Error);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                using (var connection = new SQLiteConnection(App.DatabasePath))
+                {
+                    connection.DeleteAll<ToDo>();
+                }
+                ReadDatabase();
+            }
+
         }
     }
 }
