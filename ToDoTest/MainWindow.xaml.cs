@@ -28,6 +28,20 @@ namespace ToDoTest
         }
 
         /// <summary>
+        /// データベース更新
+        /// </summary>
+        private void ReadDatabase()
+        {
+            using (var connection = new SQLiteConnection(App.DatabasePath))
+            {
+                connection.CreateTable<ToDo>();
+                ToDoDataView.ItemsSource = connection.Table<ToDo>().ToList();
+            }
+        }
+
+
+
+        /// <summary>
         /// 追加処理
         /// </summary>
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -76,22 +90,35 @@ namespace ToDoTest
 
 
         /// <summary>
-        /// データベース更新
+        /// 完了済みタスク消去
         /// </summary>
-        private void ReadDatabase()
-        {
-            using (var connection = new SQLiteConnection(App.DatabasePath))
-            {
-                connection.CreateTable<ToDo>();
-                ToDoDataView.ItemsSource = connection.Table<ToDo>().ToList();
-            }
-        }
-
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("The function has not been implemented yet.");
+            int index = 0;
+            var item = ToDoDataView.Items[index] as ToDo;
+
+            while (item != null)
+            {
+
+                if (item.Done == true) {
+
+                    using (var connection = new SQLiteConnection(App.DatabasePath))
+                    {
+                        connection.Delete(item);
+                    }
+                }
+
+                index += 1;
+                item = ToDoDataView.Items[index] as ToDo;
+
+            }
+
+            ReadDatabase();
         }
 
+
+
+        #region デバッグ用
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to delete all ToDo?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Error);
@@ -106,5 +133,21 @@ namespace ToDoTest
             }
 
         }
+
+        private void CreateTaskForDebug_Click(object sender, RoutedEventArgs e)
+        {
+            string testN = "sato";
+            string testD = DateTime.Now.ToString();
+
+            for (int i = 0; i < 10; i++) {
+                using (var connection = new SQLiteConnection(App.DatabasePath))
+                {
+                    connection.Insert(new ToDo(testN, testD, testD, testD, i.ToString()));
+                }
+            }
+            ReadDatabase();
+        }
+
+        #endregion
     }
 }
